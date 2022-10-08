@@ -14,7 +14,7 @@ $pessoas = [
         <th>Nome</th>
         <th>Idade</th>
     </tr>
-    <?php foreach($pessoas as $nome => $idade); ?>
+    <?php foreach($pessoas as $nome => $idade): ?>
         <tr>
             <td><?= $nome; ?></td>
             <td><?= $idade; ?></td>

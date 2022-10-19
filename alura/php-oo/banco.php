@@ -17,3 +17,7 @@ $segundaConta = new Conta('987.654.321-10', 'Spider Man');
 echo $segundaConta->recuperarNome() . PHP_EOL;
 echo $segundaConta->recuperarCpfTitular() . PHP_EOL;
 echo $segundaConta->recuperarSaldo() . PHP_EOL;
+
+$outra = new Conta('123', 'AbcDefrg');
+echo "\n";
+echo Conta::recuperaNumeroDeContas();

@@ -1,23 +1,27 @@
 <?php
 
-require_once 'Conta.php';
+require_once 'autoload.php';
 
-$primeiraConta = new Conta('123.456.789-10', 'Jhon Doe');
-$primeiraConta->depositar(500);
-$primeiraConta->sacar(300);
-// $primeiraConta->defineCpfTitular('123.456.789-10');
-// $primeiraConta->defineNomeTitular('Jhon Doe');
+use Alura\Banco\Modelo\Conta\Titular;
+use Alura\Banco\Modelo\Endereco;
+use Alura\Banco\Modelo\CPF;
+use Alura\Banco\Modelo\Conta\Conta;
 
-echo $primeiraConta->recuperarNome() . PHP_EOL;
-echo $primeiraConta->recuperarCpfTitular() . PHP_EOL;
-echo $primeiraConta->recuperarSaldo() . PHP_EOL;
+$endereco = new Endereco('Petrópolis', 'um bairro', 'minha rua', '71B');
+$vinicius = new Titular(new CPF('123.456.789-10'), 'Vinicius Dias', $endereco);
+$primeiraConta = new Conta($vinicius);
+$primeiraConta->deposita(500);
+$primeiraConta->saca(300); // isso é ok
 
-echo "\n";
-$segundaConta = new Conta('987.654.321-10', 'Spider Man');
-echo $segundaConta->recuperarNome() . PHP_EOL;
-echo $segundaConta->recuperarCpfTitular() . PHP_EOL;
-echo $segundaConta->recuperarSaldo() . PHP_EOL;
+echo $primeiraConta->recuperaNomeTitular() . PHP_EOL;
+echo $primeiraConta->recuperaCpfTitular() . PHP_EOL;
+echo $primeiraConta->recuperaSaldo() . PHP_EOL;
 
-$outra = new Conta('123', 'AbcDefrg');
-echo "\n";
+$patricia = new Titular(new CPF('698.549.548-10'), 'Patricia', $endereco);
+$segundaConta = new Conta($patricia);
+var_dump($segundaConta);
+
+$outroEndereco = new Endereco('A', 'b', 'c', '1D');
+$outra = new Conta(new Titular(new CPF('123.654.789-01'), 'Abcdefg', $outroEndereco));
+unset($segundaConta);
 echo Conta::recuperaNumeroDeContas();

@@ -43,17 +43,6 @@ abstract class Conta
         $this->saldo += $valorADepositar;
     }
 
-    public function transfere(float $valorATransferir, Conta $contaDestino): void
-    {
-        if ($valorATransferir > $this->saldo) {
-            echo "Saldo indisponível";
-            return;
-        }
-
-        $this->saca($valorATransferir);
-        $contaDestino->deposita($valorATransferir);
-    }
-
     public function recuperaSaldo(): float
     {
         return $this->saldo;
@@ -75,5 +64,4 @@ abstract class Conta
     }
 
     abstract protected function percentualTarifa(): float;
-
 }
